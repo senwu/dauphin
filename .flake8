@@ -1,0 +1,8 @@
+# This is our code-style check. We currently allow the following exceptions:
+#   - W503: line break before binary operator
+#   - E203: whitespace before ':'
+[flake8]
+count = True
+max-line-length = 88
+statistics = True
+ignore = W503,E203
