@@ -84,12 +84,18 @@ To use our uncertainty-based random sampling scheme you will need to install the
 Image classification experiments
 ---------------------------------
 
-To run image classification, we provide a simple `run_image.sh` in the script folder and you just run the following command.
+To run cifar10 / image classification, we provide a simple `run_cifar10.sh` in the script folder and you just run the following command.
 
 .. code:: bash
 
-  bash scripts/run_image.sh
+  bash scripts/run_cifar10.sh
 
+To run imagenet / image classification, we provide a simple `run_ImageNet.sh` in the script folder and you just run the following command. Need to change the datapath "--data" in run_ImageNet.sh. 
+
+.. code:: bash
+
+  bash scripts/run_ImageNet.sh 
+  
 The default ``augment_policy`` is ``uncertainty_sampling`` which concatenates the composition of 2 randomly selected transformations and default transformations (i.e. randomly cropping, horizontal flipping, cutout, and mixup). We also provide a command-line interface for each parameter. For more detailed options, run ``image -h`` to see a list of all possible options.
 
 Text classification experiments
