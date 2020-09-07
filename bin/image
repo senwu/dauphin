@@ -20,7 +20,7 @@ def add_application_args(parser):
         "--task",
         type=str,
         default="cifar10",
-        choices=["cifar10", "cifar100", "mnist"],
+        choices=["cifar10", "cifar100", "mnist", "ImageNet"],
         help="Task name"
     )
 
@@ -44,10 +44,15 @@ def add_application_args(parser):
         "--model",
         type=str,
         default="wide_resnet",
-        choices=["wide_resnet", "mlp", "shake_shake", "pyramidnet"],
+        choices=["wide_resnet", "mlp", "shake_shake", "pyramidnet", "resnet"],
         help="Which model to use"
     )
 
+    # Resnet model config
+    application_config.add_argument(
+        "--resnet_depth", type=int, default=50, help="Resnet depth"
+    )
+    
     # Wide Resnet model config
     application_config.add_argument(
         "--wide_resnet_depth", type=int, default=28, help="Wide Resnet depth"
