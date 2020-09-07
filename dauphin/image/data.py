@@ -9,12 +9,16 @@ logger = logging.getLogger(__name__)
 
 
 def get_dataloaders(args):
-    train_dataset = torchvision.datasets.__dict__[args.task.upper()](
-        root=args.data, train=True, download=True
-    )
-    test_dataset = torchvision.datasets.__dict__[args.task.upper()](
-        root=args.data, train=False, download=True
-    )
+    if args.task.upper() != 'IMAGENET':
+        train_dataset = torchvision.datasets.__dict__[args.task.upper()](
+            root=args.data, train=True, download=True
+        )
+        test_dataset = torchvision.datasets.__dict__[args.task.upper()](
+            root=args.data, train=False, download=True
+        )
+    else:
+        train_dataset = ImageNet(root=os.path.join(args.data, 'imagenet-pytorch'))
+        test_dataset = ImageNet(root=os.path.join(args.data, 'imagenet-pytorch'), split='val')
 
     dataloaders = []
     datasets = {}

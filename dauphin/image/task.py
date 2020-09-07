@@ -49,7 +49,19 @@ def create_task(args):
         n_hidden_dim = feature_extractor(
             torch.randn(TASK_INPUT_SIZE[args.task])
         ).size()[-1]
-
+        
+    elif args.model in ["resnet"]:
+        feature_extractor = ALL_MODELS[args.model](
+            'imagenet',
+            args.resnet_depth,
+            n_class,
+            has_fc=False,
+            bottleneck=True,
+        )
+        n_hidden_dim = feature_extractor(
+            torch.randn(TASK_INPUT_SIZE[args.task])
+        ).size()[-1]
+        
     elif args.model == "mlp":
         n_hidden_dim = args.mlp_hidden_dim
         input_dim = np.prod(TASK_INPUT_SIZE[args.task])
