@@ -52,11 +52,11 @@ def create_task(args):
         
     elif args.model in ["resnet"]:
         feature_extractor = ALL_MODELS[args.model](
-            args.wide_resnet_depth,
-            args.wide_resnet_width,
-            args.wide_resnet_dropout,
+            'imagenet',
+            args.resnet_depth,
             n_class,
             has_fc=False,
+            bottleneck=True,
         )
         n_hidden_dim = feature_extractor(
             torch.randn(TASK_INPUT_SIZE[args.task])
